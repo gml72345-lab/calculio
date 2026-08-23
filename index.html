@@ -1,0 +1,358 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>Calculio — Les calculs que vous n'avez pas envie de faire</title>
+
+  <meta name="description"
+        content="Calculio propose des calculateurs gratuits pour le salaire, les impôts, la voiture, l'électricité et les calculs du quotidien.">
+
+  <style>
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      font-family: Arial, Helvetica, sans-serif;
+      background: #f6f7fb;
+      color: #172033;
+    }
+
+    header {
+      background: white;
+      border-bottom: 1px solid #e5e7eb;
+      padding: 18px 0;
+    }
+
+    .container {
+      width: min(1100px, 92%);
+      margin: auto;
+    }
+
+    .nav {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .logo {
+      font-size: 26px;
+      font-weight: 800;
+      color: #3154c8;
+      text-decoration: none;
+    }
+
+    nav a {
+      margin-left: 22px;
+      text-decoration: none;
+      color: #4b5563;
+    }
+
+    .hero {
+      padding: 90px 0 70px;
+      text-align: center;
+    }
+
+    .badge {
+      display: inline-block;
+      background: #e9efff;
+      color: #3154c8;
+      padding: 7px 13px;
+      border-radius: 30px;
+      font-size: 14px;
+      font-weight: bold;
+    }
+
+    h1 {
+      font-size: clamp(42px, 7vw, 76px);
+      line-height: 1;
+      letter-spacing: -3px;
+      margin: 20px auto;
+      max-width: 900px;
+    }
+
+    .hero p {
+      max-width: 650px;
+      margin: auto;
+      color: #667085;
+      font-size: 19px;
+      line-height: 1.6;
+    }
+
+    .button {
+      display: inline-block;
+      margin-top: 28px;
+      background: #3154c8;
+      color: white;
+      padding: 14px 22px;
+      border-radius: 10px;
+      text-decoration: none;
+      font-weight: bold;
+    }
+
+    section {
+      padding: 50px 0;
+    }
+
+    h2 {
+      font-size: 32px;
+      margin-bottom: 25px;
+    }
+
+    .tools {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 20px;
+    }
+
+    .tool {
+      background: white;
+      border: 1px solid #e5e7eb;
+      border-radius: 18px;
+      padding: 28px;
+      text-decoration: none;
+      color: inherit;
+      transition: 0.15s;
+    }
+
+    .tool:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 15px 40px rgba(0,0,0,0.08);
+    }
+
+    .icon {
+      font-size: 38px;
+    }
+
+    .tool h3 {
+      font-size: 21px;
+      margin: 12px 0 7px;
+    }
+
+    .tool p {
+      color: #667085;
+      margin: 0;
+    }
+
+    .about {
+      background: white;
+      border-radius: 20px;
+      padding: 35px;
+      margin-bottom: 70px;
+    }
+
+    footer {
+      background: white;
+      border-top: 1px solid #e5e7eb;
+      padding: 30px 0;
+      color: #667085;
+    }
+
+    footer a {
+      color: #667085;
+      margin-left: 15px;
+    }
+
+    @media (max-width: 700px) {
+      .tools {
+        grid-template-columns: 1fr;
+      }
+
+      .hero {
+        padding-top: 60px;
+      }
+
+      h1 {
+        letter-spacing: -2px;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+<header>
+  <div class="container nav">
+
+    <a class="logo" href="index.html">
+      Calculio
+    </a>
+
+    <nav>
+      <a href="#outils">Outils</a>
+      <a href="#apropos">À propos</a>
+    </nav>
+
+  </div>
+</header>
+
+
+<main>
+
+  <section class="hero">
+
+    <div class="container">
+
+      <span class="badge">
+        100 % gratuit · Sans inscription
+      </span>
+
+      <h1>
+        Les calculs que vous n'avez pas envie de faire.
+      </h1>
+
+      <p>
+        Salaire, impôts, voiture, électricité, pourcentages...
+        Calculio vous donne rapidement une estimation claire
+        et facile à comprendre.
+      </p>
+
+      <a class="button" href="#outils">
+        Voir les calculateurs
+      </a>
+
+    </div>
+
+  </section>
+
+
+  <section id="outils">
+
+    <div class="container">
+
+      <h2>
+        Nos calculateurs
+      </h2>
+
+      <div class="tools">
+
+
+        <a class="tool" href="salaire.html">
+
+          <div class="icon">💰</div>
+
+          <h3>
+            Salaire brut → net
+          </h3>
+
+          <p>
+            Estimez votre salaire net, votre net après impôt
+            et votre revenu annuel.
+          </p>
+
+        </a>
+
+
+        <a class="tool" href="voiture.html">
+
+          <div class="icon">🚗</div>
+
+          <h3>
+            Coût réel d'une voiture
+          </h3>
+
+          <p>
+            Carburant, assurance, entretien, crédit,
+            parking et coût au kilomètre.
+          </p>
+
+        </a>
+
+
+        <a class="tool" href="electricite.html">
+
+          <div class="icon">⚡</div>
+
+          <h3>
+            Coût d'électricité
+          </h3>
+
+          <p>
+            Découvrez combien coûte un appareil électrique
+            par jour, mois et année.
+          </p>
+
+        </a>
+
+
+        <a class="tool" href="pourcentage.html">
+
+          <div class="icon">🧮</div>
+
+          <h3>
+            Pourcentage et réduction
+          </h3>
+
+          <p>
+            Calculez rapidement une réduction,
+            une augmentation ou un pourcentage.
+          </p>
+
+        </a>
+
+
+      </div>
+
+    </div>
+
+  </section>
+
+
+  <section id="apropos">
+
+    <div class="container">
+
+      <div class="about">
+
+        <h2>
+          Pourquoi Calculio ?
+        </h2>
+
+        <p>
+          Calculio rassemble des outils gratuits pour les
+          questions pratiques de la vie quotidienne.
+        </p>
+
+        <p>
+          Notre objectif est simple :
+          vous donner une réponse rapidement,
+          sans inscription et sans calcul compliqué.
+        </p>
+
+        <p>
+          Les résultats sont indicatifs et ne remplacent pas
+          un calcul officiel ou un conseil professionnel.
+        </p>
+
+      </div>
+
+    </div>
+
+  </section>
+
+</main>
+
+
+<footer>
+
+  <div class="container">
+
+    © 2026 Calculio
+
+    <a href="confidentialite.html">
+      Confidentialité
+    </a>
+
+    <a href="mentions.html">
+      Mentions
+    </a>
+
+  </div>
+
+</footer>
+
+</body>
+</html>
