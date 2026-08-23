@@ -1,0 +1,436 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>Combien coûte réellement ma voiture ? — Calculio</title>
+
+  <meta name="description"
+        content="Calculez le coût réel de votre voiture : carburant, assurance, entretien, crédit, parking et coût par kilomètre.">
+
+  <style>
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      font-family: Arial, Helvetica, sans-serif;
+      background: #f6f7fb;
+      color: #172033;
+    }
+
+    header {
+      background: white;
+      border-bottom: 1px solid #e5e7eb;
+      padding: 18px 0;
+    }
+
+    .container {
+      width: min(900px, 92%);
+      margin: auto;
+    }
+
+    .nav {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .logo {
+      font-size: 26px;
+      font-weight: 800;
+      color: #3154c8;
+      text-decoration: none;
+    }
+
+    nav a {
+      text-decoration: none;
+      color: #4b5563;
+    }
+
+    main {
+      padding: 55px 0 80px;
+    }
+
+    .back {
+      color: #3154c8;
+      text-decoration: none;
+      font-weight: bold;
+    }
+
+    h1 {
+      font-size: clamp(36px, 6vw, 58px);
+      line-height: 1.05;
+      letter-spacing: -2px;
+      margin: 25px 0 15px;
+    }
+
+    .intro {
+      color: #667085;
+      font-size: 18px;
+      line-height: 1.6;
+    }
+
+    .calculator {
+      background: white;
+      border: 1px solid #e5e7eb;
+      border-radius: 18px;
+      padding: 28px;
+      margin-top: 30px;
+      box-shadow: 0 10px 35px rgba(0,0,0,0.05);
+    }
+
+    .field {
+      margin-bottom: 20px;
+    }
+
+    label {
+      display: block;
+      font-weight: bold;
+      margin-bottom: 7px;
+    }
+
+    input {
+      width: 100%;
+      padding: 13px;
+      border: 1px solid #d1d5db;
+      border-radius: 9px;
+      font-size: 16px;
+    }
+
+    button {
+      width: 100%;
+      border: none;
+      background: #3154c8;
+      color: white;
+      padding: 14px;
+      border-radius: 9px;
+      font-size: 17px;
+      font-weight: bold;
+      cursor: pointer;
+    }
+
+    .result {
+      margin-top: 25px;
+      background: #eef3ff;
+      border-radius: 12px;
+      padding: 22px;
+      display: none;
+    }
+
+    .main-result {
+      font-size: 30px;
+      font-weight: 800;
+      color: #3154c8;
+      margin-bottom: 12px;
+    }
+
+    .result p {
+      line-height: 1.8;
+      margin: 0;
+    }
+
+    article {
+      margin-top: 45px;
+      line-height: 1.7;
+    }
+
+    article h2 {
+      margin-top: 35px;
+    }
+
+    footer {
+      background: white;
+      border-top: 1px solid #e5e7eb;
+      padding: 30px 0;
+      color: #667085;
+    }
+
+    @media (max-width: 600px) {
+      .calculator {
+        padding: 20px;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+<header>
+  <div class="container nav">
+
+    <a class="logo" href="index.html">
+      Calculio
+    </a>
+
+    <nav>
+      <a href="index.html">Tous les outils</a>
+    </nav>
+
+  </div>
+</header>
+
+
+<main>
+
+  <div class="container">
+
+    <a class="back" href="index.html">
+      ← Retour aux calculateurs
+    </a>
+
+    <h1>
+      Combien me coûte réellement ma voiture ?
+    </h1>
+
+    <p class="intro">
+      Le carburant n'est qu'une partie du coût d'une voiture.
+      Additionnez vos principales dépenses pour connaître
+      votre budget automobile réel.
+    </p>
+
+
+    <div class="calculator">
+
+      <div class="field">
+        <label for="carburant">
+          Carburant / recharge (€ par mois)
+        </label>
+
+        <input
+          id="carburant"
+          type="number"
+          min="0"
+          step="10"
+          value="150"
+        >
+      </div>
+
+
+      <div class="field">
+        <label for="assurance">
+          Assurance (€ par mois)
+        </label>
+
+        <input
+          id="assurance"
+          type="number"
+          min="0"
+          step="5"
+          value="70"
+        >
+      </div>
+
+
+      <div class="field">
+        <label for="entretien">
+          Entretien / pneus (€ par mois)
+        </label>
+
+        <input
+          id="entretien"
+          type="number"
+          min="0"
+          step="5"
+          value="60"
+        >
+      </div>
+
+
+      <div class="field">
+        <label for="credit">
+          Crédit / leasing (€ par mois)
+        </label>
+
+        <input
+          id="credit"
+          type="number"
+          min="0"
+          step="10"
+          value="250"
+        >
+      </div>
+
+
+      <div class="field">
+        <label for="parking">
+          Parking / péages (€ par mois)
+        </label>
+
+        <input
+          id="parking"
+          type="number"
+          min="0"
+          step="5"
+          value="30"
+        >
+      </div>
+
+
+      <div class="field">
+        <label for="kilometres">
+          Kilomètres parcourus par mois
+        </label>
+
+        <input
+          id="kilometres"
+          type="number"
+          min="0"
+          step="100"
+          value="1000"
+        >
+      </div>
+
+
+      <button onclick="calculer()">
+        Calculer mon coût
+      </button>
+
+
+      <div id="resultat" class="result">
+
+        <div class="main-result" id="mensuel"></div>
+
+        <p id="details"></p>
+
+      </div>
+
+    </div>
+
+
+    <article>
+
+      <h2>
+        Que coûte réellement une voiture ?
+      </h2>
+
+      <p>
+        Pour connaître le coût réel d'une voiture, il faut
+        prendre en compte davantage que le carburant.
+        Assurance, entretien, financement, stationnement
+        et péages peuvent représenter une somme importante.
+      </p>
+
+
+      <h2>
+        Le coût par kilomètre
+      </h2>
+
+      <p>
+        Une fois le coût mensuel calculé, Calculio le rapporte
+        au nombre de kilomètres parcourus afin d'obtenir
+        une estimation du coût de chaque kilomètre.
+      </p>
+
+
+      <h2>
+        Une estimation
+      </h2>
+
+      <p>
+        Le calcul ne prend pas encore en compte la dépréciation
+        du véhicule, qui peut être une dépense importante.
+        Une version ultérieure pourra intégrer le prix d'achat,
+        la valeur de revente et l'âge du véhicule.
+      </p>
+
+    </article>
+
+  </div>
+
+</main>
+
+
+<footer>
+
+  <div class="container">
+
+    © 2026 Calculio
+
+  </div>
+
+</footer>
+
+
+<script>
+
+function valeur(id) {
+
+  return parseFloat(
+    document.getElementById(id).value
+  ) || 0;
+
+}
+
+
+function calculer() {
+
+  const carburant = valeur("carburant");
+  const assurance = valeur("assurance");
+  const entretien = valeur("entretien");
+  const credit = valeur("credit");
+  const parking = valeur("parking");
+  const kilometres = valeur("kilometres");
+
+
+  const mensuel =
+    carburant +
+    assurance +
+    entretien +
+    credit +
+    parking;
+
+
+  const annuel =
+    mensuel * 12;
+
+
+  let coutKm = 0;
+
+  if (kilometres > 0) {
+
+    coutKm =
+      mensuel / kilometres;
+
+  }
+
+
+  document.getElementById("resultat").style.display =
+    "block";
+
+
+  document.getElementById("mensuel").textContent =
+    mensuel.toLocaleString("fr-FR", {
+      style: "currency",
+      currency: "EUR"
+    }) + " / mois";
+
+
+  document.getElementById("details").innerHTML =
+
+    "Coût annuel : <strong>" +
+
+    annuel.toLocaleString("fr-FR", {
+      style: "currency",
+      currency: "EUR"
+    }) +
+
+    "</strong><br>" +
+
+    "Coût par kilomètre : <strong>" +
+
+    coutKm.toLocaleString("fr-FR", {
+      style: "currency",
+      currency: "EUR"
+    }) +
+
+    "</strong>";
+
+}
+
+</script>
+
+</body>
+</html>
