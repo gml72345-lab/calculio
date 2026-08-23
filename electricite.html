@@ -1,0 +1,543 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+
+  <meta charset="UTF-8">
+
+  <meta name="viewport"
+        content="width=device-width, initial-scale=1.0">
+
+  <title>Calculateur coût électricité — Calculio</title>
+
+  <meta name="description"
+        content="Calculez combien coûte un appareil électrique par jour, mois et an selon sa puissance et son utilisation.">
+
+  <style>
+
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      font-family: Arial, Helvetica, sans-serif;
+      background: #f6f7fb;
+      color: #172033;
+    }
+
+    header {
+      background: white;
+      border-bottom: 1px solid #e5e7eb;
+      padding: 18px 0;
+    }
+
+    .container {
+      width: min(900px, 92%);
+      margin: auto;
+    }
+
+    .nav {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .logo {
+      font-size: 26px;
+      font-weight: 800;
+      color: #3154c8;
+      text-decoration: none;
+    }
+
+    nav a {
+      text-decoration: none;
+      color: #4b5563;
+    }
+
+    main {
+      padding: 55px 0 80px;
+    }
+
+    .back {
+      color: #3154c8;
+      text-decoration: none;
+      font-weight: bold;
+    }
+
+    h1 {
+      font-size: clamp(36px, 6vw, 58px);
+      line-height: 1.05;
+      letter-spacing: -2px;
+      margin: 25px 0 15px;
+    }
+
+    .intro {
+      color: #667085;
+      font-size: 18px;
+      line-height: 1.6;
+    }
+
+    .calculator {
+      background: white;
+      border: 1px solid #e5e7eb;
+      border-radius: 18px;
+      padding: 28px;
+      margin-top: 30px;
+      box-shadow: 0 10px 35px rgba(0,0,0,0.05);
+    }
+
+    .field {
+      margin-bottom: 20px;
+    }
+
+    label {
+      display: block;
+      font-weight: bold;
+      margin-bottom: 7px;
+    }
+
+    input {
+      width: 100%;
+      padding: 13px;
+      border: 1px solid #d1d5db;
+      border-radius: 9px;
+      font-size: 16px;
+    }
+
+    button {
+      width: 100%;
+      border: none;
+      background: #3154c8;
+      color: white;
+      padding: 14px;
+      border-radius: 9px;
+      font-size: 17px;
+      font-weight: bold;
+      cursor: pointer;
+    }
+
+    button:hover {
+      opacity: .9;
+    }
+
+    .result {
+      margin-top: 25px;
+      background: #eef3ff;
+      border-radius: 12px;
+      padding: 22px;
+      display: none;
+    }
+
+    .main-result {
+      font-size: 30px;
+      font-weight: 800;
+      color: #3154c8;
+      margin-bottom: 12px;
+    }
+
+    .result p {
+      line-height: 1.8;
+      margin: 0;
+    }
+
+    .info {
+      margin-top: 18px;
+      padding: 15px;
+      background: #f3f4f6;
+      border-radius: 10px;
+      font-size: 14px;
+      color: #667085;
+    }
+
+    article {
+      margin-top: 45px;
+      line-height: 1.7;
+    }
+
+    article h2 {
+      margin-top: 35px;
+    }
+
+    footer {
+      background: white;
+      border-top: 1px solid #e5e7eb;
+      padding: 30px 0;
+      color: #667085;
+    }
+
+    @media (max-width: 600px) {
+
+      .calculator {
+        padding: 20px;
+      }
+
+    }
+
+  </style>
+
+</head>
+
+
+<body>
+
+
+<header>
+
+  <div class="container nav">
+
+    <a class="logo"
+       href="index.html">
+
+      Calculio
+
+    </a>
+
+    <nav>
+
+      <a href="index.html">
+        Tous les outils
+      </a>
+
+    </nav>
+
+  </div>
+
+</header>
+
+
+<main>
+
+  <div class="container">
+
+
+    <a class="back"
+       href="index.html">
+
+      ← Retour aux calculateurs
+
+    </a>
+
+
+    <h1>
+
+      Combien coûte cet appareil électrique ?
+
+    </h1>
+
+
+    <p class="intro">
+
+      Entrez la puissance de votre appareil,
+      son temps d'utilisation et le prix de votre
+      électricité pour connaître son coût estimé.
+
+    </p>
+
+
+    <div class="calculator">
+
+
+      <div class="field">
+
+        <label for="puissance">
+
+          Puissance de l'appareil (watts)
+
+        </label>
+
+        <input
+          id="puissance"
+          type="number"
+          min="0"
+          step="10"
+          value="1000"
+        >
+
+      </div>
+
+
+      <div class="field">
+
+        <label for="heures">
+
+          Heures d'utilisation par jour
+
+        </label>
+
+        <input
+          id="heures"
+          type="number"
+          min="0"
+          step="0.1"
+          value="2"
+        >
+
+      </div>
+
+
+      <div class="field">
+
+        <label for="prix">
+
+          Prix de l'électricité (€ / kWh)
+
+        </label>
+
+        <input
+          id="prix"
+          type="number"
+          min="0"
+          step="0.001"
+          value="0.25"
+        >
+
+      </div>
+
+
+      <button onclick="calculer()">
+
+        Calculer le coût
+
+      </button>
+
+
+      <div id="resultat"
+           class="result">
+
+
+        <div id="mensuel"
+             class="main-result">
+        </div>
+
+
+        <p id="details">
+        </p>
+
+
+      </div>
+
+
+      <div class="info">
+
+        💡 Astuce : vous trouverez généralement
+        la puissance électrique d'un appareil
+        sur son étiquette ou sa fiche technique.
+
+      </div>
+
+
+    </div>
+
+
+    <article>
+
+
+      <h2>
+
+        Comment calculer le coût électrique ?
+
+      </h2>
+
+
+      <p>
+
+        La consommation dépend de la puissance
+        de l'appareil et du temps pendant lequel
+        il fonctionne.
+
+      </p>
+
+
+      <p>
+
+        Par exemple, un appareil de 1 000 watts
+        utilisé pendant 2 heures consomme environ
+        2 kWh.
+
+      </p>
+
+
+      <h2>
+
+        Attention à la consommation réelle
+
+      </h2>
+
+
+      <p>
+
+        Certains appareils ne fonctionnent pas
+        constamment à leur puissance maximale.
+        Le résultat fourni par Calculio est donc
+        une estimation.
+
+      </p>
+
+
+      <h2>
+
+        Pourquoi cet outil peut être utile ?
+
+      </h2>
+
+
+      <p>
+
+        Il permet notamment de comparer le coût
+        de différents appareils : chauffage,
+        sèche-linge, ordinateur, télévision,
+        climatiseur, four, etc.
+
+      </p>
+
+
+    </article>
+
+
+  </div>
+
+</main>
+
+
+<footer>
+
+  <div class="container">
+
+    © 2026 Calculio
+
+  </div>
+
+</footer>
+
+
+<script>
+
+function valeur(id) {
+
+  return parseFloat(
+    document.getElementById(id).value
+  ) || 0;
+
+}
+
+
+function calculer() {
+
+  const puissance =
+    valeur("puissance");
+
+  const heures =
+    valeur("heures");
+
+  const prix =
+    valeur("prix");
+
+
+  /*
+    Puissance en watts → kilowatts
+  */
+
+  const puissanceKW =
+    puissance / 1000;
+
+
+  /*
+    Consommation quotidienne
+    en kWh
+  */
+
+  const kWhJour =
+    puissanceKW * heures;
+
+
+  /*
+    Coût quotidien
+  */
+
+  const coutJour =
+    kWhJour * prix;
+
+
+  /*
+    Estimation mensuelle :
+    30 jours
+  */
+
+  const coutMois =
+    coutJour * 30;
+
+
+  /*
+    Estimation annuelle :
+    365 jours
+  */
+
+  const coutAn =
+    coutJour * 365;
+
+
+  const consommationAn =
+    kWhJour * 365;
+
+
+  document.getElementById("resultat")
+    .style.display = "block";
+
+
+  document.getElementById("mensuel")
+    .textContent =
+
+    coutMois.toLocaleString("fr-FR", {
+
+      style: "currency",
+
+      currency: "EUR"
+
+    }) + " / mois";
+
+
+  document.getElementById("details")
+    .innerHTML =
+
+    "Coût par jour : <strong>" +
+
+    coutJour.toLocaleString("fr-FR", {
+
+      style: "currency",
+
+      currency: "EUR"
+
+    }) +
+
+    "</strong><br>" +
+
+    "Coût par an : <strong>" +
+
+    coutAn.toLocaleString("fr-FR", {
+
+      style: "currency",
+
+      currency: "EUR"
+
+    }) +
+
+    "</strong><br>" +
+
+    "Consommation annuelle : <strong>" +
+
+    consommationAn.toLocaleString("fr-FR") +
+
+    " kWh</strong>";
+
+}
+
+
+calculer();
+
+</script>
+
+
+</body>
+
+</html>
