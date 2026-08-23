@@ -1,15 +1,20 @@
 <!DOCTYPE html>
 <html lang="fr">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-  <title>Calculateur salaire brut net 2026 — Calculio</title>
+<head>
+
+  <meta charset="UTF-8">
+
+  <meta name="viewport"
+        content="width=device-width, initial-scale=1.0">
+
+  <title>Calcul salaire brut net 2026 — Simulateur gratuit | Calculio</title>
 
   <meta name="description"
-        content="Calculez votre salaire brut en net et obtenez une estimation du net après impôt avec Calculio.">
+        content="Calculez votre salaire brut en net en 2026. Estimez votre salaire net avant et après prélèvement à la source avec Calculio.">
 
   <style>
+
     * {
       box-sizing: border-box;
     }
@@ -17,19 +22,24 @@
     body {
       margin: 0;
       font-family: Arial, Helvetica, sans-serif;
-      background: #f6f7fb;
-      color: #172033;
+      background: #f4eee5;
+      color: #20232a;
     }
 
-    header {
-      background: white;
-      border-bottom: 1px solid #e5e7eb;
-      padding: 18px 0;
+    a {
+      text-decoration: none;
     }
 
     .container {
       width: min(900px, 92%);
       margin: auto;
+    }
+
+
+    /* HEADER */
+
+    header {
+      padding: 22px 0;
     }
 
     .nav {
@@ -39,66 +49,89 @@
     }
 
     .logo {
-      font-size: 26px;
+      font-size: 28px;
       font-weight: 800;
       color: #3154c8;
-      text-decoration: none;
+      letter-spacing: -1px;
     }
 
     nav a {
-      text-decoration: none;
-      color: #4b5563;
+      color: #62615d;
+      font-size: 15px;
     }
 
+
+    /* MAIN */
+
     main {
-      padding: 55px 0 80px;
+      padding: 35px 0 80px;
     }
 
     .back {
       color: #3154c8;
-      text-decoration: none;
       font-weight: bold;
+      font-size: 15px;
     }
 
     h1 {
-      font-size: clamp(36px, 6vw, 58px);
-      line-height: 1.05;
-      letter-spacing: -2px;
-      margin: 25px 0 15px;
+      font-size: clamp(40px, 7vw, 64px);
+      line-height: 1;
+      letter-spacing: -3px;
+      margin: 25px 0 18px;
     }
 
     .intro {
-      color: #667085;
-      font-size: 18px;
-      line-height: 1.6;
+      max-width: 700px;
+      color: #686862;
+      font-size: 19px;
+      line-height: 1.65;
     }
 
+
+    /* CALCULATOR */
+
     .calculator {
-      background: white;
-      border: 1px solid #e5e7eb;
-      border-radius: 18px;
-      padding: 28px;
-      margin-top: 30px;
-      box-shadow: 0 10px 35px rgba(0,0,0,0.05);
+      background: #fffdf9;
+      border: 1px solid #e5ddd2;
+      border-radius: 20px;
+      padding: 30px;
+      margin-top: 35px;
+      box-shadow: 0 10px 35px rgba(60,45,25,.07);
     }
 
     .field {
-      margin-bottom: 20px;
+      margin-bottom: 22px;
     }
 
     label {
       display: block;
       font-weight: bold;
-      margin-bottom: 7px;
+      margin-bottom: 8px;
+    }
+
+    .help {
+      display: block;
+      margin-top: 6px;
+      color: #77746d;
+      font-size: 13px;
+      line-height: 1.4;
     }
 
     input,
     select {
       width: 100%;
-      padding: 13px;
-      border: 1px solid #d1d5db;
-      border-radius: 9px;
+      padding: 14px;
+      border: 1px solid #d7d1c8;
+      border-radius: 10px;
+      background: white;
       font-size: 16px;
+      color: #20232a;
+    }
+
+    input:focus,
+    select:focus {
+      outline: 2px solid #cbd5ff;
+      border-color: #3154c8;
     }
 
     button {
@@ -106,107 +139,211 @@
       border: none;
       background: #3154c8;
       color: white;
-      padding: 14px;
-      border-radius: 9px;
+      padding: 15px;
+      border-radius: 10px;
       font-size: 17px;
       font-weight: bold;
       cursor: pointer;
     }
 
     button:hover {
-      opacity: .9;
+      opacity: .92;
     }
 
+
+    /* RESULT */
+
     .result {
+      display: none;
       margin-top: 25px;
       background: #eef3ff;
-      border-radius: 12px;
-      padding: 22px;
-      display: none;
+      border: 1px solid #d9e2ff;
+      border-radius: 15px;
+      padding: 24px;
+    }
+
+    .result-title {
+      color: #555;
+      font-size: 14px;
+      margin-bottom: 5px;
     }
 
     .main-result {
-      font-size: 30px;
-      font-weight: 800;
       color: #3154c8;
-      margin-bottom: 12px;
+      font-size: 36px;
+      font-weight: 800;
+      margin-bottom: 18px;
     }
 
-    .result p {
-      line-height: 1.8;
-      margin: 0;
+    .result-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 12px;
     }
+
+    .result-item {
+      background: white;
+      border-radius: 10px;
+      padding: 14px;
+    }
+
+    .result-item span {
+      display: block;
+      color: #777;
+      font-size: 13px;
+      margin-bottom: 5px;
+    }
+
+    .result-item strong {
+      font-size: 18px;
+    }
+
+
+    /* WARNING */
 
     .warning {
       margin-top: 18px;
-      padding: 15px;
+      padding: 16px;
       background: #fff7e6;
-      border-radius: 10px;
-      color: #6b4e00;
+      border: 1px solid #f0dfbd;
+      border-radius: 11px;
+      color: #665000;
       font-size: 14px;
-      line-height: 1.5;
+      line-height: 1.55;
     }
 
+
+    /* ARTICLE */
+
     article {
-      margin-top: 45px;
-      line-height: 1.7;
+      margin-top: 60px;
+      line-height: 1.75;
     }
 
     article h2 {
-      margin-top: 35px;
+      font-size: 29px;
+      margin-top: 42px;
+      letter-spacing: -.5px;
     }
+
+    article h3 {
+      font-size: 21px;
+      margin-top: 30px;
+    }
+
+    article p {
+      color: #5f5e59;
+    }
+
+    article a {
+      color: #3154c8;
+      font-weight: bold;
+    }
+
+
+    /* OFFICIAL LINK */
+
+    .official {
+      margin-top: 25px;
+      padding: 20px;
+      background: #fffdf9;
+      border: 1px solid #e5ddd2;
+      border-radius: 14px;
+    }
+
+
+    /* FOOTER */
 
     footer {
-      background: white;
-      border-top: 1px solid #e5e7eb;
-      padding: 30px 0;
-      color: #667085;
+      background: #24262b;
+      color: #d8d8d4;
+      padding: 35px 0;
+      text-align: center;
+      font-size: 14px;
     }
 
+
+    /* MOBILE */
+
     @media (max-width: 600px) {
+
       .calculator {
         padding: 20px;
       }
+
+      .result-grid {
+        grid-template-columns: 1fr;
+      }
+
+      h1 {
+        letter-spacing: -2px;
+      }
+
     }
+
   </style>
+
 </head>
+
 
 <body>
 
+
 <header>
+
   <div class="container nav">
 
-    <a class="logo" href="index.html">
+    <a class="logo"
+       href="index.html">
+
       Calculio
+
     </a>
 
     <nav>
-      <a href="index.html">Tous les outils</a>
+
+      <a href="index.html">
+        Tous les outils
+      </a>
+
     </nav>
 
   </div>
+
 </header>
+
 
 
 <main>
 
   <div class="container">
 
-    <a class="back" href="index.html">
+
+    <a class="back"
+       href="index.html">
+
       ← Retour aux calculateurs
+
     </a>
 
+
     <h1>
-      Salaire brut → net
+      Calcul salaire brut net 2026
     </h1>
 
+
     <p class="intro">
-      Estimez votre salaire net à partir de votre salaire brut.
-      Le résultat est indicatif et dépend de votre situation.
+
+      Entrez votre salaire brut pour obtenir une
+      estimation de votre salaire net mensuel et annuel,
+      avant et après prélèvement à la source.
+
     </p>
 
 
+
     <div class="calculator">
+
 
       <div class="field">
 
@@ -223,13 +360,19 @@
           placeholder="Exemple : 2500"
         >
 
+        <span class="help">
+          Entrez le salaire brut indiqué sur votre contrat
+          ou votre proposition d'embauche.
+        </span>
+
       </div>
+
 
 
       <div class="field">
 
         <label for="statut">
-          Votre statut
+          Statut
         </label>
 
         <select id="statut">
@@ -239,7 +382,7 @@
           </option>
 
           <option value="cadre">
-            Cadre
+            Salarié cadre
           </option>
 
         </select>
@@ -247,10 +390,11 @@
       </div>
 
 
+
       <div class="field">
 
         <label for="pas">
-          Taux de prélèvement à la source (%)
+          Taux de prélèvement à la source
         </label>
 
         <input
@@ -263,114 +407,271 @@
           placeholder="Exemple : 5"
         >
 
+        <span class="help">
+          Si vous connaissez votre taux de prélèvement,
+          indiquez-le ici. Sinon, laissez 0 %.
+        </span>
+
       </div>
+
 
 
       <button onclick="calculer()">
-        Calculer mon salaire
+
+        Calculer mon salaire net
+
       </button>
 
 
-      <div id="resultat" class="result">
 
-        <div class="main-result" id="net"></div>
+      <div id="resultat"
+           class="result">
 
-        <p id="details"></p>
+
+        <div class="result-title">
+          Estimation de votre salaire net après impôt
+        </div>
+
+
+        <div id="net"
+             class="main-result">
+        </div>
+
+
+        <div class="result-grid">
+
+
+          <div class="result-item">
+
+            <span>
+              Salaire brut
+            </span>
+
+            <strong id="brutResult">
+            </strong>
+
+          </div>
+
+
+          <div class="result-item">
+
+            <span>
+              Net avant impôt
+            </span>
+
+            <strong id="netAvant">
+            </strong>
+
+          </div>
+
+
+          <div class="result-item">
+
+            <span>
+              Net annuel avant impôt
+            </span>
+
+            <strong id="netAnnuel">
+            </strong>
+
+          </div>
+
+
+          <div class="result-item">
+
+            <span>
+              Net annuel après impôt
+            </span>
+
+            <strong id="netAnnuelApres">
+            </strong>
+
+          </div>
+
+
+        </div>
+
 
       </div>
+
 
 
       <div class="warning">
 
-        ⚠️ <strong>Estimation :</strong>
-        ce calculateur fournit un ordre de grandeur.
-        Le montant réel dépend notamment du contrat,
-        du statut, des cotisations, des avantages,
-        des heures supplémentaires et de la situation fiscale.
-        Pour un calcul officiel, vérifiez le résultat auprès
-        des services de l'Urssaf et des impôts.
+        ⚠️ <strong>Important :</strong>
+        ce résultat est une estimation et ne constitue
+        pas un bulletin de paie. Le salaire réellement
+        versé dépend notamment du contrat, des cotisations,
+        du statut, des avantages, des heures supplémentaires,
+        de la mutuelle et d'autres paramètres.
 
       </div>
+
 
     </div>
 
 
+
     <article>
 
-      <h2>
-        Comment passer du brut au net ?
-      </h2>
-
-      <p>
-        Le salaire brut est le montant prévu avant les
-        cotisations salariales. Le salaire net correspond
-        à ce qui reste après les cotisations.
-      </p>
-
-      <p>
-        Le prélèvement à la source intervient ensuite
-        pour l'impôt sur le revenu.
-      </p>
-
 
       <h2>
-        Pourquoi le résultat peut-il être différent de votre fiche de paie ?
+        Comment calculer un salaire brut en net ?
       </h2>
 
+
       <p>
-        Les cotisations ne sont pas identiques dans toutes
-        les situations. Le statut, le contrat de travail,
-        les éléments de rémunération et différentes règles
-        sociales peuvent modifier le résultat.
+
+        Le salaire brut correspond à la rémunération avant
+        déduction des cotisations salariales. Le salaire
+        net correspond au montant restant après ces
+        prélèvements.
+
       </p>
+
+
+      <p>
+
+        Le prélèvement à la source de l'impôt sur le revenu
+        intervient ensuite. Son montant dépend notamment
+        du taux de prélèvement transmis à l'employeur.
+
+      </p>
+
 
 
       <h2>
-        Données 2026
+        Pourquoi le salaire net varie-t-il selon les personnes ?
       </h2>
 
+
       <p>
-        Calculio est conçu pour utiliser des paramètres
-        actualisables. Les paramètres fiscaux et sociaux
-        doivent être vérifiés sur les sources officielles
-        avant chaque mise à jour annuelle.
+
+        Deux personnes ayant le même salaire brut peuvent
+        obtenir des montants nets différents selon leur
+        situation. Le calcul peut notamment dépendre du
+        statut cadre, du contrat, du temps de travail,
+        des avantages et de certains éléments de rémunération.
+
       </p>
+
+
+
+      <h2>
+        Le calculateur est-il à jour pour 2026 ?
+      </h2>
+
+
+      <p>
+
+        Calculio utilise une estimation simplifiée.
+        Les paramètres sociaux français évoluent régulièrement.
+        Pour une simulation exhaustive, l'Urssaf propose un
+        simulateur officiel intégrant les paramètres 2026 et
+        de nombreuses situations particulières.
+
+      </p>
+
+
+      <div class="official">
+
+        <strong>
+          Simulation officielle
+        </strong>
+
+        <p>
+
+          Pour vérifier un résultat avec davantage de
+          paramètres, consultez le simulateur officiel
+          de l'Urssaf.
+
+        </p>
+
+        <a
+          href="https://mon-entreprise.urssaf.fr/simulateurs/salaire-brut-net"
+          target="_blank"
+          rel="noopener">
+
+          Ouvrir le simulateur Urssaf →
+
+        </a>
+
+      </div>
+
+
+
+      <h2>
+        Exemple : 2 500 € brut par mois
+      </h2>
+
+
+      <p>
+
+        Pour 2 500 € brut mensuels, le montant net dépend
+        notamment du statut et des paramètres applicables.
+        Utilisez le calculateur ci-dessus pour obtenir une
+        estimation personnalisée.
+
+      </p>
+
 
     </article>
+
 
   </div>
 
 </main>
 
 
+
 <footer>
 
   <div class="container">
 
-    © 2026 Calculio
+    © 2026 Calculio — Calculateur salaire brut net
 
   </div>
 
 </footer>
 
 
+
 <script>
+
+function euros(nombre) {
+
+  return nombre.toLocaleString("fr-FR", {
+    style: "currency",
+    currency: "EUR"
+  });
+
+}
+
 
 function calculer() {
 
+
   const brut =
-    parseFloat(document.getElementById("brut").value) || 0;
+    parseFloat(
+      document.getElementById("brut").value
+    ) || 0;
+
 
   const statut =
     document.getElementById("statut").value;
 
+
   const tauxPAS =
-    parseFloat(document.getElementById("pas").value) || 0;
+    parseFloat(
+      document.getElementById("pas").value
+    ) || 0;
 
 
   if (brut <= 0) {
 
-    alert("Veuillez entrer un salaire brut.");
+    alert(
+      "Veuillez entrer un salaire brut supérieur à 0 €."
+    );
 
     return;
 
@@ -378,101 +679,93 @@ function calculer() {
 
 
   /*
-    ESTIMATION DE DÉMONSTRATION
+    ESTIMATION SIMPLIFIÉE
 
-    Ces taux ne constituent PAS un barème officiel.
-    Ils servent uniquement à faire fonctionner la V1.
+    Ce modèle n'est PAS le moteur officiel Urssaf.
+    Les taux ci-dessous sont volontairement présentés
+    comme des hypothèses d'estimation et non comme
+    des paramètres réglementaires officiels.
 
-    Nous remplacerons cette partie par le moteur
-    de calcul documenté 2026 avant la mise en ligne
-    définitive.
+    Pour une simulation complète 2026, consulter
+    le simulateur officiel Urssaf.
   */
 
-  let tauxCotisations;
+
+  let tauxEstime;
+
 
   if (statut === "cadre") {
 
-    tauxCotisations = 0.25;
+    tauxEstime = 0.25;
 
   } else {
 
-    tauxCotisations = 0.23;
+    tauxEstime = 0.23;
 
   }
 
 
-  const netAvantImpôt =
-    brut * (1 - tauxCotisations);
+  const netAvantImpot =
+    brut * (1 - tauxEstime);
 
 
-  const netAprèsImpôt =
-    netAvantImpôt * (1 - tauxPAS / 100);
+  const netApresImpot =
+    netAvantImpot *
+    (1 - tauxPAS / 100);
 
 
-  const annuel =
-    netAvantImpôt * 12;
+  const netAnnuel =
+    netAvantImpot * 12;
 
 
-  const annuelAprèsImpôt =
-    netAprèsImpôt * 12;
+  const netAnnuelApres =
+    netApresImpot * 12;
 
 
-  document.getElementById("resultat").style.display =
-    "block";
+
+  document.getElementById(
+    "resultat"
+  ).style.display = "block";
 
 
-  document.getElementById("net").textContent =
-    netAprèsImpôt.toLocaleString("fr-FR", {
-      style: "currency",
-      currency: "EUR"
-    }) + " / mois";
+  document.getElementById(
+    "net"
+  ).textContent =
+    euros(netApresImpot) +
+    " / mois";
 
 
-  document.getElementById("details").innerHTML =
+  document.getElementById(
+    "brutResult"
+  ).textContent =
+    euros(brut);
 
-    "Brut mensuel : <strong>" +
-    brut.toLocaleString("fr-FR", {
-      style: "currency",
-      currency: "EUR"
-    }) +
 
-    "</strong><br>" +
+  document.getElementById(
+    "netAvant"
+  ).textContent =
+    euros(netAvantImpot);
 
-    "Net avant prélèvement : <strong>" +
-    netAvantImpôt.toLocaleString("fr-FR", {
-      style: "currency",
-      currency: "EUR"
-    }) +
 
-    "</strong><br>" +
+  document.getElementById(
+    "netAnnuel"
+  ).textContent =
+    euros(netAnnuel);
 
-    "Net après prélèvement estimé : <strong>" +
-    netAprèsImpôt.toLocaleString("fr-FR", {
-      style: "currency",
-      currency: "EUR"
-    }) +
 
-    "</strong><br>" +
-
-    "Net annuel avant prélèvement : <strong>" +
-    annuel.toLocaleString("fr-FR", {
-      style: "currency",
-      currency: "EUR"
-    }) +
-
-    "</strong><br>" +
-
-    "Net annuel après prélèvement estimé : <strong>" +
-    annuelAprèsImpôt.toLocaleString("fr-FR", {
-      style: "currency",
-      currency: "EUR"
-    }) +
-
-    "</strong>";
+  document.getElementById(
+    "netAnnuelApres"
+  ).textContent =
+    euros(netAnnuelApres);
 
 }
 
+
+calculer();
+
 </script>
 
+
 </body>
+
 </html>
