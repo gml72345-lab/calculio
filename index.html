@@ -2,22 +2,21 @@
 <html lang="fr">
 
 <head>
-  
-  <meta name="google-site-verification" content="5m_MqBzWeSZ3st80F23Uzw3nD20BFSc6moQx8BOz7Jg" />
-  
-  <meta charset="UTF-8">
-<!DOCTYPE html>
-<html lang="fr">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-  <title>Calculio — Les calculs que vous n'avez pas envie de faire</title>
+  <meta charset="UTF-8">
+
+  <meta name="viewport"
+        content="width=device-width, initial-scale=1.0">
+
+  <title>Calculio — Calculateurs gratuits en ligne</title>
 
   <meta name="description"
-        content="Calculio propose des calculateurs gratuits pour le salaire, les impôts, la voiture, l'électricité et les calculs du quotidien.">
+        content="Calculio propose des calculateurs gratuits pour le salaire brut net, le coût d'une voiture, l'électricité et les pourcentages.">
+
+  <meta name="google-site-verification" content="REMPLACE_PAR_TA_BALISE_GOOGLE">
 
   <style>
+
     * {
       box-sizing: border-box;
     }
@@ -25,19 +24,25 @@
     body {
       margin: 0;
       font-family: Arial, Helvetica, sans-serif;
-      background: #f6f7fb;
-      color: #172033;
+      background: #f4eee5;
+      color: #20232a;
     }
 
-    header {
-      background: white;
-      border-bottom: 1px solid #e5e7eb;
-      padding: 18px 0;
+    a {
+      text-decoration: none;
     }
 
     .container {
       width: min(1100px, 92%);
       margin: auto;
+    }
+
+
+    /* HEADER */
+
+    header {
+      background: #f4eee5;
+      padding: 24px 0;
     }
 
     .nav {
@@ -47,259 +52,405 @@
     }
 
     .logo {
-      font-size: 26px;
-      font-weight: 800;
       color: #3154c8;
-      text-decoration: none;
+      font-size: 28px;
+      font-weight: 800;
+      letter-spacing: -1px;
     }
 
-    nav a {
-      margin-left: 22px;
-      text-decoration: none;
-      color: #4b5563;
+    .nav-link {
+      color: #5e625f;
+      font-size: 15px;
     }
+
+
+    /* HERO */
 
     .hero {
-      padding: 90px 0 70px;
+      padding: 70px 0 55px;
       text-align: center;
     }
 
     .badge {
       display: inline-block;
-      background: #e9efff;
-      color: #3154c8;
-      padding: 7px 13px;
-      border-radius: 30px;
+      background: #e8dfd2;
+      color: #5c554c;
+      padding: 8px 14px;
+      border-radius: 50px;
       font-size: 14px;
       font-weight: bold;
+      margin-bottom: 20px;
     }
 
     h1 {
-      font-size: clamp(42px, 7vw, 76px);
+      max-width: 850px;
+      margin: auto;
+      font-size: clamp(42px, 7vw, 72px);
       line-height: 1;
       letter-spacing: -3px;
-      margin: 20px auto;
-      max-width: 900px;
     }
 
     .hero p {
-      max-width: 650px;
-      margin: auto;
-      color: #667085;
+      max-width: 680px;
+      margin: 25px auto 0;
       font-size: 19px;
-      line-height: 1.6;
+      line-height: 1.65;
+      color: #6b6b67;
     }
 
-    .button {
-      display: inline-block;
-      margin-top: 28px;
-      background: #3154c8;
-      color: white;
-      padding: 14px 22px;
-      border-radius: 10px;
-      text-decoration: none;
-      font-weight: bold;
-    }
 
-    section {
-      padding: 50px 0;
-    }
-
-    h2 {
-      font-size: 32px;
-      margin-bottom: 25px;
-    }
+    /* OUTILS */
 
     .tools {
+      padding: 25px 0 80px;
+    }
+
+    .section-title {
+      text-align: center;
+      font-size: 32px;
+      margin-bottom: 30px;
+      letter-spacing: -1px;
+    }
+
+    .grid {
       display: grid;
       grid-template-columns: repeat(2, 1fr);
       gap: 20px;
     }
 
-    .tool {
-      background: white;
-      border: 1px solid #e5e7eb;
-      border-radius: 18px;
+    .card {
+      background: #fffdf9;
+      border: 1px solid #e5ddd2;
+      border-radius: 20px;
       padding: 28px;
-      text-decoration: none;
-      color: inherit;
-      transition: 0.15s;
+      transition: transform .2s, box-shadow .2s;
+      box-shadow: 0 8px 25px rgba(60, 45, 25, 0.05);
     }
 
-    .tool:hover {
-      transform: translateY(-3px);
-      box-shadow: 0 15px 40px rgba(0,0,0,0.08);
+    .card:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 14px 35px rgba(60, 45, 25, 0.10);
     }
 
     .icon {
-      font-size: 38px;
+      font-size: 35px;
+      margin-bottom: 15px;
     }
 
-    .tool h3 {
-      font-size: 21px;
-      margin: 12px 0 7px;
+    .card h3 {
+      margin: 0 0 10px;
+      font-size: 22px;
     }
 
-    .tool p {
-      color: #667085;
-      margin: 0;
+    .card p {
+      color: #6b6b67;
+      line-height: 1.6;
+      margin-bottom: 22px;
     }
+
+    .button {
+      display: inline-block;
+      background: #3154c8;
+      color: white;
+      padding: 12px 17px;
+      border-radius: 9px;
+      font-weight: bold;
+      font-size: 15px;
+    }
+
+
+    /* EXPLICATION */
 
     .about {
-      background: white;
-      border-radius: 20px;
-      padding: 35px;
-      margin-bottom: 70px;
+      background: #fffdf9;
+      border-top: 1px solid #e5ddd2;
+      border-bottom: 1px solid #e5ddd2;
+      padding: 70px 0;
     }
+
+    .about-content {
+      max-width: 800px;
+      margin: auto;
+      text-align: center;
+    }
+
+    .about h2 {
+      font-size: 34px;
+      letter-spacing: -1px;
+    }
+
+    .about p {
+      color: #686862;
+      line-height: 1.8;
+      font-size: 17px;
+    }
+
+
+    /* SEO */
+
+    .seo {
+      padding: 70px 0;
+    }
+
+    .seo-content {
+      max-width: 850px;
+      margin: auto;
+    }
+
+    .seo h2 {
+      font-size: 30px;
+    }
+
+    .seo h3 {
+      margin-top: 30px;
+    }
+
+    .seo p {
+      color: #686862;
+      line-height: 1.8;
+    }
+
+
+    /* FOOTER */
 
     footer {
-      background: white;
-      border-top: 1px solid #e5e7eb;
-      padding: 30px 0;
-      color: #667085;
+      background: #24262b;
+      color: #d5d5d1;
+      padding: 35px 0;
+      text-align: center;
     }
 
-    footer a {
-      color: #667085;
-      margin-left: 15px;
+    footer p {
+      margin: 7px 0;
+      font-size: 14px;
     }
+
+
+    /* MOBILE */
 
     @media (max-width: 700px) {
-      .tools {
+
+      .grid {
         grid-template-columns: 1fr;
       }
 
       .hero {
-        padding-top: 60px;
+        padding-top: 45px;
       }
 
       h1 {
         letter-spacing: -2px;
       }
+
     }
+
   </style>
+
 </head>
+
 
 <body>
 
+
 <header>
+
   <div class="container nav">
 
-    <a class="logo" href="index.html">
+    <a class="logo"
+       href="index.html">
+
       Calculio
+
     </a>
 
-    <nav>
-      <a href="#outils">Outils</a>
-      <a href="#apropos">À propos</a>
-    </nav>
+    <a class="nav-link"
+       href="#outils">
+
+      Voir les outils ↓
+
+    </a>
 
   </div>
+
 </header>
 
 
+
 <main>
+
+
+  <!-- HERO -->
 
   <section class="hero">
 
     <div class="container">
 
-      <span class="badge">
-        100 % gratuit · Sans inscription
-      </span>
+      <div class="badge">
+
+        Des outils simples et gratuits
+
+      </div>
+
 
       <h1>
-        Les calculs que vous n'avez pas envie de faire.
+
+        Les calculs que vous
+        n'avez pas envie de faire.
+
       </h1>
 
-      <p>
-        Salaire, impôts, voiture, électricité, pourcentages...
-        Calculio vous donne rapidement une estimation claire
-        et facile à comprendre.
-      </p>
 
-      <a class="button" href="#outils">
-        Voir les calculateurs
-      </a>
+      <p>
+
+        Salaire, voiture, électricité, pourcentages...
+        Calculio transforme les calculs du quotidien
+        en résultats simples à comprendre.
+
+      </p>
 
     </div>
 
   </section>
 
 
-  <section id="outils">
+
+  <!-- OUTILS -->
+
+  <section class="tools"
+           id="outils">
 
     <div class="container">
 
-      <h2>
-        Nos calculateurs
+      <h2 class="section-title">
+
+        Les calculateurs
+
       </h2>
 
-      <div class="tools">
+
+      <div class="grid">
 
 
-        <a class="tool" href="salaire.html">
+        <!-- SALAIRE -->
 
-          <div class="icon">💰</div>
+        <div class="card">
+
+          <div class="icon">
+            💰
+          </div>
 
           <h3>
             Salaire brut → net
           </h3>
 
           <p>
-            Estimez votre salaire net, votre net après impôt
-            et votre revenu annuel.
+
+            Estimez votre salaire net à partir
+            de votre salaire brut et de votre
+            taux de prélèvement.
+
           </p>
 
-        </a>
+          <a class="button"
+             href="salaire.html">
+
+            Calculer mon salaire →
+
+          </a>
+
+        </div>
 
 
-        <a class="tool" href="voiture.html">
 
-          <div class="icon">🚗</div>
+        <!-- VOITURE -->
+
+        <div class="card">
+
+          <div class="icon">
+            🚗
+          </div>
 
           <h3>
             Coût réel d'une voiture
           </h3>
 
           <p>
-            Carburant, assurance, entretien, crédit,
-            parking et coût au kilomètre.
+
+            Découvrez combien votre voiture
+            vous coûte réellement chaque mois,
+            chaque année et par kilomètre.
+
           </p>
 
-        </a>
+          <a class="button"
+             href="voiture.html">
+
+            Calculer le coût →
+
+          </a>
+
+        </div>
 
 
-        <a class="tool" href="electricite.html">
 
-          <div class="icon">⚡</div>
+        <!-- ELECTRICITE -->
+
+        <div class="card">
+
+          <div class="icon">
+            ⚡
+          </div>
 
           <h3>
-            Coût d'électricité
+            Coût de l'électricité
           </h3>
 
           <p>
-            Découvrez combien coûte un appareil électrique
-            par jour, mois et année.
+
+            Découvrez combien coûte l'utilisation
+            d'un appareil électrique par jour,
+            par mois et par an.
+
           </p>
 
-        </a>
+          <a class="button"
+             href="electricite.html">
+
+            Calculer →
+
+          </a>
+
+        </div>
 
 
-        <a class="tool" href="pourcentage.html">
 
-          <div class="icon">🧮</div>
+        <!-- POURCENTAGE -->
+
+        <div class="card">
+
+          <div class="icon">
+            🧮
+          </div>
 
           <h3>
-            Pourcentage et réduction
+            Pourcentage & réduction
           </h3>
 
           <p>
-            Calculez rapidement une réduction,
-            une augmentation ou un pourcentage.
+
+            Calculez une réduction, une augmentation,
+            un pourcentage ou l'évolution entre deux valeurs.
+
           </p>
 
-        </a>
+          <a class="button"
+             href="pourcentage.html">
+
+            Calculer →
+
+          </a>
+
+        </div>
 
 
       </div>
@@ -309,30 +460,34 @@
   </section>
 
 
-  <section id="apropos">
+
+  <!-- A PROPOS -->
+
+  <section class="about">
 
     <div class="container">
 
-      <div class="about">
+      <div class="about-content">
 
         <h2>
           Pourquoi Calculio ?
         </h2>
 
         <p>
-          Calculio rassemble des outils gratuits pour les
-          questions pratiques de la vie quotidienne.
+
+          On cherche tous régulièrement une réponse
+          à une question simple : combien ça coûte ?
+          combien je gagne réellement ? combien
+          représente cette réduction ?
+
         </p>
 
         <p>
-          Notre objectif est simple :
-          vous donner une réponse rapidement,
+
+          Calculio rassemble ces petits calculateurs
+          dans un seul endroit, gratuitement,
           sans inscription et sans calcul compliqué.
-        </p>
 
-        <p>
-          Les résultats sont indicatifs et ne remplacent pas
-          un calcul officiel ou un conseil professionnel.
         </p>
 
       </div>
@@ -341,26 +496,103 @@
 
   </section>
 
+
+
+  <!-- SEO -->
+
+  <section class="seo">
+
+    <div class="container">
+
+      <div class="seo-content">
+
+        <h2>
+          Des calculateurs pour les questions du quotidien
+        </h2>
+
+
+        <h3>
+          Calcul de salaire brut et net
+        </h3>
+
+        <p>
+
+          Vous souhaitez connaître votre salaire net
+          à partir d'un salaire brut ? Utilisez notre
+          calculateur de salaire pour obtenir une
+          estimation simple et rapide.
+
+        </p>
+
+
+        <h3>
+          Coût réel d'une voiture
+        </h3>
+
+        <p>
+
+          Le prix du carburant n'est qu'une partie
+          du budget automobile. Assurance, entretien,
+          financement et autres dépenses peuvent
+          rapidement augmenter le coût réel d'une voiture.
+
+        </p>
+
+
+        <h3>
+          Consommation électrique
+        </h3>
+
+        <p>
+
+          Un appareil de 1 000 watts coûte combien
+          lorsqu'il fonctionne plusieurs heures par jour ?
+          Notre calculateur permet de l'estimer facilement.
+
+        </p>
+
+
+        <h3>
+          Pourcentages et réductions
+        </h3>
+
+        <p>
+
+          Besoin de calculer une remise de 20 %,
+          une augmentation de salaire ou une évolution
+          entre deux prix ? Calculio vous donne
+          directement le résultat.
+
+        </p>
+
+      </div>
+
+    </div>
+
+  </section>
+
+
 </main>
+
 
 
 <footer>
 
   <div class="container">
 
-    © 2026 Calculio
+    <p>
+      © 2026 Calculio
+    </p>
 
-    <a href="confidentialite.html">
-      Confidentialité
-    </a>
-
-    <a href="mentions.html">
-      Mentions
-    </a>
+    <p>
+      Des outils simples pour les calculs du quotidien.
+    </p>
 
   </div>
 
 </footer>
 
+
 </body>
+
 </html>
