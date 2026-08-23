@@ -1,0 +1,750 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+
+  <meta charset="UTF-8">
+
+  <meta name="viewport"
+        content="width=device-width, initial-scale=1.0">
+
+  <title>Calculateur de pourcentage et réduction — Calculio</title>
+
+  <meta name="description"
+        content="Calculez facilement un pourcentage, une réduction, une augmentation ou la différence entre deux valeurs.">
+
+  <style>
+
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      font-family: Arial, Helvetica, sans-serif;
+      background: #f6f7fb;
+      color: #172033;
+    }
+
+    header {
+      background: white;
+      border-bottom: 1px solid #e5e7eb;
+      padding: 18px 0;
+    }
+
+    .container {
+      width: min(900px, 92%);
+      margin: auto;
+    }
+
+    .nav {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .logo {
+      font-size: 26px;
+      font-weight: 800;
+      color: #3154c8;
+      text-decoration: none;
+    }
+
+    nav a {
+      text-decoration: none;
+      color: #4b5563;
+    }
+
+    main {
+      padding: 55px 0 80px;
+    }
+
+    .back {
+      color: #3154c8;
+      text-decoration: none;
+      font-weight: bold;
+    }
+
+    h1 {
+      font-size: clamp(36px, 6vw, 58px);
+      line-height: 1.05;
+      letter-spacing: -2px;
+      margin: 25px 0 15px;
+    }
+
+    .intro {
+      color: #667085;
+      font-size: 18px;
+      line-height: 1.6;
+    }
+
+    .calculator {
+      background: white;
+      border: 1px solid #e5e7eb;
+      border-radius: 18px;
+      padding: 28px;
+      margin-top: 30px;
+      box-shadow: 0 10px 35px rgba(0,0,0,0.05);
+    }
+
+    .calculator-section {
+      border-top: 1px solid #e5e7eb;
+      padding-top: 25px;
+      margin-top: 25px;
+    }
+
+    .calculator-section:first-child {
+      border-top: none;
+      padding-top: 0;
+      margin-top: 0;
+    }
+
+    h2 {
+      font-size: 22px;
+      margin-top: 0;
+    }
+
+    .field {
+      margin-bottom: 18px;
+    }
+
+    label {
+      display: block;
+      font-weight: bold;
+      margin-bottom: 7px;
+    }
+
+    input {
+      width: 100%;
+      padding: 13px;
+      border: 1px solid #d1d5db;
+      border-radius: 9px;
+      font-size: 16px;
+    }
+
+    button {
+      width: 100%;
+      border: none;
+      background: #3154c8;
+      color: white;
+      padding: 13px;
+      border-radius: 9px;
+      font-size: 16px;
+      font-weight: bold;
+      cursor: pointer;
+    }
+
+    button:hover {
+      opacity: .9;
+    }
+
+    .result {
+      margin-top: 18px;
+      background: #eef3ff;
+      border-radius: 12px;
+      padding: 18px;
+      display: none;
+      line-height: 1.7;
+    }
+
+    .big {
+      font-size: 27px;
+      font-weight: 800;
+      color: #3154c8;
+      margin-bottom: 8px;
+    }
+
+    article {
+      margin-top: 45px;
+      line-height: 1.7;
+    }
+
+    article h2 {
+      margin-top: 35px;
+    }
+
+    footer {
+      background: white;
+      border-top: 1px solid #e5e7eb;
+      padding: 30px 0;
+      color: #667085;
+    }
+
+    @media (max-width: 600px) {
+
+      .calculator {
+        padding: 20px;
+      }
+
+    }
+
+  </style>
+
+</head>
+
+
+<body>
+
+
+<header>
+
+  <div class="container nav">
+
+    <a class="logo"
+       href="index.html">
+
+      Calculio
+
+    </a>
+
+    <nav>
+
+      <a href="index.html">
+        Tous les outils
+      </a>
+
+    </nav>
+
+  </div>
+
+</header>
+
+
+<main>
+
+  <div class="container">
+
+
+    <a class="back"
+       href="index.html">
+
+      ← Retour aux calculateurs
+
+    </a>
+
+
+    <h1>
+
+      Calculateur de pourcentage
+
+    </h1>
+
+
+    <p class="intro">
+
+      Réduction, augmentation, pourcentage
+      d'une valeur ou évolution entre deux nombres.
+
+    </p>
+
+
+    <div class="calculator">
+
+
+      <!-- POURCENTAGE D'UNE VALEUR -->
+
+      <div class="calculator-section">
+
+        <h2>
+          Quel est X % de Y ?
+        </h2>
+
+        <div class="field">
+
+          <label for="pourcent">
+            Pourcentage
+          </label>
+
+          <input
+            id="pourcent"
+            type="number"
+            value="20"
+            step="0.1"
+          >
+
+        </div>
+
+
+        <div class="field">
+
+          <label for="valeur">
+            Valeur
+          </label>
+
+          <input
+            id="valeur"
+            type="number"
+            value="100"
+            step="0.01"
+          >
+
+        </div>
+
+
+        <button onclick="calculerPourcentage()">
+          Calculer
+        </button>
+
+
+        <div id="resultPourcentage"
+             class="result">
+
+        </div>
+
+      </div>
+
+
+      <!-- REDUCTION -->
+
+      <div class="calculator-section">
+
+        <h2>
+          Calculer une réduction
+        </h2>
+
+        <div class="field">
+
+          <label for="prix">
+            Prix initial (€)
+          </label>
+
+          <input
+            id="prix"
+            type="number"
+            value="100"
+            min="0"
+            step="0.01"
+          >
+
+        </div>
+
+
+        <div class="field">
+
+          <label for="reduction">
+            Réduction (%)
+          </label>
+
+          <input
+            id="reduction"
+            type="number"
+            value="20"
+            min="0"
+            max="100"
+            step="0.1"
+          >
+
+        </div>
+
+
+        <button onclick="calculerReduction()">
+          Calculer le prix final
+        </button>
+
+
+        <div id="resultReduction"
+             class="result">
+
+        </div>
+
+      </div>
+
+
+      <!-- AUGMENTATION -->
+
+      <div class="calculator-section">
+
+        <h2>
+          Calculer une augmentation
+        </h2>
+
+
+        <div class="field">
+
+          <label for="prixAugmentation">
+            Valeur initiale
+          </label>
+
+          <input
+            id="prixAugmentation"
+            type="number"
+            value="100"
+            min="0"
+            step="0.01"
+          >
+
+        </div>
+
+
+        <div class="field">
+
+          <label for="augmentation">
+            Augmentation (%)
+          </label>
+
+          <input
+            id="augmentation"
+            type="number"
+            value="10"
+            step="0.1"
+          >
+
+        </div>
+
+
+        <button onclick="calculerAugmentation()">
+          Calculer
+        </button>
+
+
+        <div id="resultAugmentation"
+             class="result">
+
+        </div>
+
+      </div>
+
+
+      <!-- EVOLUTION -->
+
+      <div class="calculator-section">
+
+        <h2>
+          Calculer une évolution en %
+        </h2>
+
+
+        <div class="field">
+
+          <label for="ancienne">
+            Ancienne valeur
+          </label>
+
+          <input
+            id="ancienne"
+            type="number"
+            value="100"
+            step="0.01"
+          >
+
+        </div>
+
+
+        <div class="field">
+
+          <label for="nouvelle">
+            Nouvelle valeur
+          </label>
+
+          <input
+            id="nouvelle"
+            type="number"
+            value="120"
+            step="0.01"
+          >
+
+        </div>
+
+
+        <button onclick="calculerEvolution()">
+          Calculer l'évolution
+        </button>
+
+
+        <div id="resultEvolution"
+             class="result">
+
+        </div>
+
+      </div>
+
+
+    </div>
+
+
+    <article>
+
+      <h2>
+        Comment calculer un pourcentage ?
+      </h2>
+
+      <p>
+        Un pourcentage permet de comparer une partie
+        à une valeur de référence.
+      </p>
+
+      <p>
+        Par exemple, 20 % de 100 correspond à 20.
+      </p>
+
+
+      <h2>
+        Comment calculer une réduction ?
+      </h2>
+
+      <p>
+        Pour une réduction de 20 % sur un article à 100 €,
+        le montant de la réduction est de 20 € et le prix
+        final est donc de 80 €.
+      </p>
+
+
+      <h2>
+        Attention aux augmentations successives
+      </h2>
+
+      <p>
+        Une augmentation de 10 %, suivie d'une diminution
+        de 10 %, ne ramène pas exactement à la valeur initiale.
+        Les pourcentages sont calculés par rapport à une base
+        qui peut changer.
+      </p>
+
+    </article>
+
+
+  </div>
+
+</main>
+
+
+<footer>
+
+  <div class="container">
+
+    © 2026 Calculio
+
+  </div>
+
+</footer>
+
+
+<script>
+
+
+function nombre(id) {
+
+  return parseFloat(
+    document.getElementById(id).value
+  ) || 0;
+
+}
+
+
+/* X % de Y */
+
+function calculerPourcentage() {
+
+  const pourcent =
+    nombre("pourcent");
+
+  const valeur =
+    nombre("valeur");
+
+  const resultat =
+    valeur * pourcent / 100;
+
+
+  const element =
+    document.getElementById(
+      "resultPourcentage"
+    );
+
+
+  element.style.display = "block";
+
+
+  element.innerHTML =
+
+    '<div class="big">' +
+
+    resultat.toLocaleString("fr-FR") +
+
+    '</div>' +
+
+    pourcent +
+
+    ' % de ' +
+
+    valeur +
+
+    ' = ' +
+
+    '<strong>' +
+
+    resultat.toLocaleString("fr-FR") +
+
+    '</strong>';
+
+}
+
+
+/* Réduction */
+
+function calculerReduction() {
+
+  const prix =
+    nombre("prix");
+
+  const reduction =
+    nombre("reduction");
+
+
+  const montant =
+    prix * reduction / 100;
+
+
+  const final =
+    prix - montant;
+
+
+  const element =
+    document.getElementById(
+      "resultReduction"
+    );
+
+
+  element.style.display = "block";
+
+
+  element.innerHTML =
+
+    '<div class="big">' +
+
+    final.toLocaleString("fr-FR", {
+
+      style: "currency",
+
+      currency: "EUR"
+
+    }) +
+
+    '</div>' +
+
+    'Économie : <strong>' +
+
+    montant.toLocaleString("fr-FR", {
+
+      style: "currency",
+
+      currency: "EUR"
+
+    }) +
+
+    '</strong>';
+
+}
+
+
+/* Augmentation */
+
+function calculerAugmentation() {
+
+  const valeur =
+    nombre("prixAugmentation");
+
+  const augmentation =
+    nombre("augmentation");
+
+
+  const montant =
+    valeur * augmentation / 100;
+
+
+  const final =
+    valeur + montant;
+
+
+  const element =
+    document.getElementById(
+      "resultAugmentation"
+    );
+
+
+  element.style.display = "block";
+
+
+  element.innerHTML =
+
+    '<div class="big">' +
+
+    final.toLocaleString("fr-FR") +
+
+    '</div>' +
+
+    'Augmentation : <strong>' +
+
+    montant.toLocaleString("fr-FR") +
+
+    '</strong>';
+
+}
+
+
+/* Évolution */
+
+function calculerEvolution() {
+
+  const ancienne =
+    nombre("ancienne");
+
+  const nouvelle =
+    nombre("nouvelle");
+
+
+  const element =
+    document.getElementById(
+      "resultEvolution"
+    );
+
+
+  element.style.display = "block";
+
+
+  if (ancienne === 0) {
+
+    element.innerHTML =
+      "Impossible de calculer une évolution à partir de 0.";
+
+    return;
+
+  }
+
+
+  const evolution =
+    ((nouvelle - ancienne) / ancienne) * 100;
+
+
+  const signe =
+    evolution > 0 ? "+" : "";
+
+
+  element.innerHTML =
+
+    '<div class="big">' +
+
+    signe +
+
+    evolution.toLocaleString("fr-FR", {
+      maximumFractionDigits: 2
+    }) +
+
+    ' %</div>' +
+
+    'Évolution entre ' +
+
+    ancienne +
+
+    ' et ' +
+
+    nouvelle;
+
+}
+
+
+</script>
+
+
+</body>
+
+</html>
