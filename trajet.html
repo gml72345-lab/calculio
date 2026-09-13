@@ -1,0 +1,355 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+
+  <meta charset="UTF-8">
+
+  <meta name="viewport"
+        content="width=device-width, initial-scale=1.0">
+
+  <title>Calcul coût trajet voiture — Essence, diesel | Calculio</title>
+
+  <meta name="description"
+        content="Calculez gratuitement le coût d'un trajet en voiture selon la distance, la consommation du véhicule et le prix du carburant.">
+
+  <style>
+
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      font-family: Arial, Helvetica, sans-serif;
+      background: #f4eee5;
+      color: #20232a;
+    }
+
+    .container {
+      width: min(800px, 92%);
+      margin: auto;
+    }
+
+    header {
+      padding: 24px 0;
+    }
+
+    .logo {
+      color: #3154c8;
+      font-size: 28px;
+      font-weight: 800;
+      text-decoration: none;
+    }
+
+    main {
+      padding: 40px 0 80px;
+    }
+
+    h1 {
+      font-size: clamp(36px, 7vw, 56px);
+      line-height: 1.05;
+      margin-bottom: 15px;
+    }
+
+    .intro {
+      color: #686862;
+      font-size: 18px;
+      line-height: 1.7;
+      margin-bottom: 35px;
+    }
+
+    .calculator {
+      background: #fffdf9;
+      border: 1px solid #e5ddd2;
+      border-radius: 20px;
+      padding: 30px;
+      box-shadow: 0 8px 25px rgba(60,45,25,.06);
+    }
+
+    label {
+      display: block;
+      font-weight: bold;
+      margin-top: 20px;
+      margin-bottom: 7px;
+    }
+
+    input {
+      width: 100%;
+      padding: 13px;
+      border: 1px solid #cfc7bc;
+      border-radius: 9px;
+      font-size: 16px;
+      background: white;
+    }
+
+    .checkbox {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      margin-top: 20px;
+    }
+
+    .checkbox input {
+      width: auto;
+    }
+
+    button {
+      width: 100%;
+      margin-top: 25px;
+      padding: 14px;
+      border: 0;
+      border-radius: 10px;
+      background: #3154c8;
+      color: white;
+      font-size: 17px;
+      font-weight: bold;
+      cursor: pointer;
+    }
+
+    .result {
+      display: none;
+      margin-top: 25px;
+      padding: 22px;
+      border-radius: 14px;
+      background: #f0ece5;
+    }
+
+    .result strong {
+      font-size: 28px;
+      color: #3154c8;
+    }
+
+    .info {
+      margin-top: 45px;
+      line-height: 1.8;
+      color: #62625e;
+    }
+
+    footer {
+      margin-top: 60px;
+      padding: 30px 0;
+      border-top: 1px solid #ddd4c7;
+      font-size: 14px;
+    }
+
+    footer a {
+      color: #3154c8;
+    }
+
+  </style>
+
+</head>
+
+
+<body>
+
+<header>
+  <div class="container">
+    <a class="logo" href="index.html">Calculio</a>
+  </div>
+</header>
+
+
+<main>
+
+  <div class="container">
+
+    <h1>Calcul du coût d'un trajet en voiture</h1>
+
+    <p class="intro">
+      Découvrez combien vous coûtera un trajet selon la distance,
+      la consommation de votre voiture et le prix du carburant.
+    </p>
+
+
+    <div class="calculator">
+
+      <label for="distance">
+        Distance du trajet (km)
+      </label>
+
+      <input
+        type="number"
+        id="distance"
+        placeholder="Exemple : 250"
+        min="0"
+        step="0.1">
+
+
+      <label for="consommation">
+        Consommation du véhicule (L / 100 km)
+      </label>
+
+      <input
+        type="number"
+        id="consommation"
+        placeholder="Exemple : 6.5"
+        min="0"
+        step="0.1">
+
+
+      <label for="prix">
+        Prix du carburant (€ / litre)
+      </label>
+
+      <input
+        type="number"
+        id="prix"
+        placeholder="Exemple : 1.85"
+        min="0"
+        step="0.01">
+
+
+      <div class="checkbox">
+
+        <input
+          type="checkbox"
+          id="allerRetour">
+
+        <label for="allerRetour"
+               style="margin:0;">
+          Calculer un aller-retour
+        </label>
+
+      </div>
+
+
+      <button onclick="calculerTrajet()">
+        Calculer le coût du trajet
+      </button>
+
+
+      <div class="result" id="resultat">
+
+        <p>
+          Distance calculée :
+          <b><span id="distanceFinale"></span> km</b>
+        </p>
+
+        <p>
+          Carburant nécessaire :
+          <b><span id="litres"></span> L</b>
+        </p>
+
+        <p>
+          Coût estimé du trajet :
+        </p>
+
+        <strong>
+          <span id="cout"></span> €
+        </strong>
+
+      </div>
+
+    </div>
+
+
+    <div class="info">
+
+      <h2>Comment est calculé le coût du trajet ?</h2>
+
+      <p>
+        Calculio estime la quantité de carburant nécessaire à partir
+        de la distance parcourue et de la consommation moyenne du véhicule.
+        Cette quantité est ensuite multipliée par le prix du carburant.
+      </p>
+
+      <p>
+        Exemple : une voiture consommant 6 litres aux 100 km sur
+        un trajet de 200 km utilisera environ 12 litres de carburant.
+      </p>
+
+      <p>
+        Le résultat est une estimation. La consommation réelle peut varier
+        selon la conduite, le trafic, la météo, le chargement du véhicule
+        ou encore le type de route.
+      </p>
+
+    </div>
+
+  </div>
+
+</main>
+
+
+<footer>
+
+  <div class="container">
+
+    © 2026 Calculio ·
+    <a href="index.html">Accueil</a> ·
+    <a href="apropos.html">À propos</a> ·
+    <a href="contact.html">Contact</a> ·
+    <a href="confidentialite.html">Confidentialité</a> ·
+    <a href="cookies.html">Cookies</a>
+
+  </div>
+
+</footer>
+
+
+<script>
+
+function calculerTrajet() {
+
+  let distance =
+    parseFloat(document.getElementById("distance").value);
+
+  const consommation =
+    parseFloat(document.getElementById("consommation").value);
+
+  const prix =
+    parseFloat(document.getElementById("prix").value);
+
+  const allerRetour =
+    document.getElementById("allerRetour").checked;
+
+
+  if (
+    isNaN(distance) ||
+    isNaN(consommation) ||
+    isNaN(prix) ||
+    distance <= 0 ||
+    consommation <= 0 ||
+    prix <= 0
+  ) {
+
+    alert("Merci de remplir correctement les trois champs.");
+    return;
+
+  }
+
+
+  if (allerRetour) {
+    distance = distance * 2;
+  }
+
+
+  const litres =
+    (distance * consommation) / 100;
+
+  const cout =
+    litres * prix;
+
+
+  document.getElementById("distanceFinale").textContent =
+    distance.toFixed(1);
+
+  document.getElementById("litres").textContent =
+    litres.toFixed(2);
+
+  document.getElementById("cout").textContent =
+    cout.toFixed(2);
+
+  document.getElementById("resultat").style.display =
+    "block";
+
+}
+
+</script>
+
+
+</body>
+
+</html>
