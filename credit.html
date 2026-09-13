@@ -1,0 +1,453 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+
+  <meta charset="UTF-8">
+
+  <meta name="viewport"
+        content="width=device-width, initial-scale=1.0">
+
+  <title>Calcul crédit et mensualité de prêt | Calculio</title>
+
+  <meta name="description"
+        content="Calculez gratuitement la mensualité d'un crédit, le coût total du prêt et le montant des intérêts selon le capital, le taux et la durée.">
+
+  <style>
+
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      font-family: Arial, Helvetica, sans-serif;
+      background: #f4eee5;
+      color: #20232a;
+    }
+
+    .container {
+      width: min(800px, 92%);
+      margin: auto;
+    }
+
+    header {
+      padding: 24px 0;
+    }
+
+    .logo {
+      color: #3154c8;
+      font-size: 28px;
+      font-weight: 800;
+      text-decoration: none;
+    }
+
+    main {
+      padding: 40px 0 80px;
+    }
+
+    h1 {
+      font-size: clamp(36px, 7vw, 56px);
+      line-height: 1.05;
+      margin-bottom: 15px;
+    }
+
+    .intro {
+      color: #686862;
+      font-size: 18px;
+      line-height: 1.7;
+      margin-bottom: 35px;
+    }
+
+    .calculator {
+      background: #fffdf9;
+      border: 1px solid #e5ddd2;
+      border-radius: 20px;
+      padding: 30px;
+      box-shadow: 0 8px 25px rgba(60,45,25,.06);
+    }
+
+    label {
+      display: block;
+      font-weight: bold;
+      margin-top: 20px;
+      margin-bottom: 7px;
+    }
+
+    input,
+    select {
+      width: 100%;
+      padding: 13px;
+      border: 1px solid #cfc7bc;
+      border-radius: 9px;
+      font-size: 16px;
+      background: white;
+    }
+
+    button {
+      width: 100%;
+      margin-top: 25px;
+      padding: 14px;
+      border: 0;
+      border-radius: 10px;
+      background: #3154c8;
+      color: white;
+      font-size: 17px;
+      font-weight: bold;
+      cursor: pointer;
+    }
+
+    .result {
+      display: none;
+      margin-top: 25px;
+      padding: 22px;
+      border-radius: 14px;
+      background: #f0ece5;
+    }
+
+    .monthly {
+      font-size: 34px;
+      font-weight: bold;
+      color: #3154c8;
+      margin: 5px 0 20px;
+    }
+
+    .result p {
+      margin: 10px 0;
+    }
+
+    .info {
+      margin-top: 45px;
+      line-height: 1.8;
+      color: #62625e;
+    }
+
+    .warning {
+      margin-top: 30px;
+      padding: 18px;
+      background: #fffdf9;
+      border: 1px solid #e5ddd2;
+      border-radius: 12px;
+      font-size: 14px;
+      line-height: 1.6;
+    }
+
+    footer {
+      margin-top: 60px;
+      padding: 30px 0;
+      border-top: 1px solid #ddd4c7;
+      font-size: 14px;
+    }
+
+    footer a {
+      color: #3154c8;
+    }
+
+  </style>
+
+</head>
+
+
+<body>
+
+<header>
+
+  <div class="container">
+
+    <a class="logo" href="index.html">
+      Calculio
+    </a>
+
+  </div>
+
+</header>
+
+
+<main>
+
+  <div class="container">
+
+    <h1>
+      Calculateur de crédit
+    </h1>
+
+    <p class="intro">
+      Estimez votre mensualité, le montant total des intérêts
+      et le coût total d'un prêt.
+    </p>
+
+
+    <div class="calculator">
+
+
+      <label for="montant">
+        Montant emprunté (€)
+      </label>
+
+      <input
+        type="number"
+        id="montant"
+        placeholder="Exemple : 20000"
+        min="0"
+        step="100">
+
+
+      <label for="taux">
+        Taux d'intérêt annuel (%)
+      </label>
+
+      <input
+        type="number"
+        id="taux"
+        placeholder="Exemple : 4.5"
+        min="0"
+        step="0.01">
+
+
+      <label for="duree">
+        Durée du crédit
+      </label>
+
+      <input
+        type="number"
+        id="duree"
+        placeholder="Exemple : 5"
+        min="1"
+        step="1">
+
+
+      <label for="unite">
+        Durée exprimée en
+      </label>
+
+      <select id="unite">
+
+        <option value="annees">
+          Années
+        </option>
+
+        <option value="mois">
+          Mois
+        </option>
+
+      </select>
+
+
+      <button onclick="calculerCredit()">
+        Calculer mon crédit
+      </button>
+
+
+      <div class="result" id="resultat">
+
+        <p>
+          Mensualité estimée
+        </p>
+
+        <div class="monthly">
+          <span id="mensualite"></span> €
+        </div>
+
+
+        <p>
+          Nombre de mensualités :
+          <b><span id="nombreMois"></span></b>
+        </p>
+
+        <p>
+          Total des intérêts :
+          <b><span id="interets"></span> €</b>
+        </p>
+
+        <p>
+          Montant total remboursé :
+          <b><span id="total"></span> €</b>
+        </p>
+
+      </div>
+
+    </div>
+
+
+    <div class="info">
+
+      <h2>
+        Comment calculer la mensualité d'un crédit ?
+      </h2>
+
+      <p>
+        La mensualité dépend principalement du montant emprunté,
+        du taux d'intérêt et de la durée de remboursement.
+      </p>
+
+      <p>
+        À montant identique, une durée plus longue réduit généralement
+        la mensualité, mais augmente le montant total des intérêts payés.
+      </p>
+
+
+      <h2>
+        Exemple
+      </h2>
+
+      <p>
+        Pour un prêt de 20 000 € sur 5 ans, le calculateur estime
+        la mensualité selon le taux annuel renseigné et affiche également
+        le coût total des intérêts.
+      </p>
+
+
+      <div class="warning">
+
+        <strong>Important :</strong>
+
+        cette simulation est fournie à titre indicatif.
+        Elle ne constitue ni une offre de crédit ni un conseil financier.
+        Les frais de dossier, assurances, garanties et autres frais
+        éventuels ne sont pas inclus dans le calcul.
+
+      </div>
+
+    </div>
+
+  </div>
+
+</main>
+
+
+<footer>
+
+  <div class="container">
+
+    © 2026 Calculio ·
+
+    <a href="index.html">
+      Accueil
+    </a>
+
+    ·
+
+    <a href="apropos.html">
+      À propos
+    </a>
+
+    ·
+
+    <a href="contact.html">
+      Contact
+    </a>
+
+    ·
+
+    <a href="confidentialite.html">
+      Confidentialité
+    </a>
+
+    ·
+
+    <a href="cookies.html">
+      Cookies
+    </a>
+
+  </div>
+
+</footer>
+
+
+<script>
+
+function calculerCredit() {
+
+  const montant =
+    parseFloat(document.getElementById("montant").value);
+
+  const tauxAnnuel =
+    parseFloat(document.getElementById("taux").value);
+
+  let duree =
+    parseInt(document.getElementById("duree").value);
+
+  const unite =
+    document.getElementById("unite").value;
+
+
+  if (
+    isNaN(montant) ||
+    isNaN(tauxAnnuel) ||
+    isNaN(duree) ||
+    montant <= 0 ||
+    tauxAnnuel < 0 ||
+    duree <= 0
+  ) {
+
+    alert("Merci de remplir correctement tous les champs.");
+    return;
+
+  }
+
+
+  let nombreMois;
+
+  if (unite === "annees") {
+
+    nombreMois = duree * 12;
+
+  } else {
+
+    nombreMois = duree;
+
+  }
+
+
+  const tauxMensuel =
+    (tauxAnnuel / 100) / 12;
+
+
+  let mensualite;
+
+
+  if (tauxMensuel === 0) {
+
+    mensualite = montant / nombreMois;
+
+  } else {
+
+    mensualite =
+      montant *
+      tauxMensuel /
+      (1 - Math.pow(1 + tauxMensuel, -nombreMois));
+
+  }
+
+
+  const total =
+    mensualite * nombreMois;
+
+  const interets =
+    total - montant;
+
+
+  document.getElementById("mensualite").textContent =
+    mensualite.toFixed(2);
+
+  document.getElementById("nombreMois").textContent =
+    nombreMois;
+
+  document.getElementById("interets").textContent =
+    interets.toFixed(2);
+
+  document.getElementById("total").textContent =
+    total.toFixed(2);
+
+
+  document.getElementById("resultat").style.display =
+    "block";
+
+}
+
+</script>
+
+
+</body>
+
+</html>
