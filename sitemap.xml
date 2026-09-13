@@ -23,7 +23,11 @@
   </url>
 
   <url>
-  <loc>https://calculio.gml72345.workers.dev/trajet.html</loc>
+    <loc>https://calculio.gml72345.workers.dev/trajet.html</loc>
+  </url>
+
+  <url>
+    <loc>https://calculio.gml72345.workers.dev/credit.html</loc>
   </url>
   
 </urlset>
