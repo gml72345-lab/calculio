@@ -633,9 +633,172 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       Des outils simples pour les calculs du quotidien.
     </p>
 
+    <p>
+      <a href="apropos.html" style="color:#d5d5d1;">
+        À propos
+      </a>
+      ·
+      <a href="contact.html" style="color:#d5d5d1;">
+        Contact
+      </a>
+      ·
+      <a href="confidentialite.html" style="color:#d5d5d1;">
+        Confidentialité
+      </a>
+      ·
+      <a href="cookies.html" style="color:#d5d5d1;">
+        Cookies
+      </a>
+      ·
+      <a href="#"
+         onclick="calculioManageCookies(); return false;"
+         style="color:#d5d5d1;">
+        Gérer mes cookies
+      </a>
+    </p>
+
   </div>
 
 </footer>
+
+
+<!-- Bannière cookies Calculio -->
+<div id="cookie-banner" style="
+  position: fixed;
+  left: 50%;
+  bottom: 20px;
+  transform: translateX(-50%);
+  width: min(720px, 92%);
+  background: #fffdf9;
+  color: #20232a;
+  border: 1px solid #d9d0c4;
+  border-radius: 16px;
+  padding: 20px;
+  box-shadow: 0 12px 40px rgba(0,0,0,.18);
+  z-index: 9999;
+  font-family: Arial, Helvetica, sans-serif;
+  display: none;
+">
+
+  <strong style="font-size:18px;">
+    Votre confidentialité
+  </strong>
+
+  <p style="margin:10px 0 16px; line-height:1.5;">
+    Calculio utilise des outils de mesure d’audience pour comprendre
+    l’utilisation du site et l’améliorer. Vous pouvez accepter ou refuser
+    les traceurs non essentiels.
+    <a href="cookies.html" style="color:#3154c8;">
+      En savoir plus
+    </a>
+  </p>
+
+  <div style="display:flex; gap:10px; flex-wrap:wrap;">
+
+    <button onclick="calculioAcceptCookies()" style="
+      padding:11px 17px;
+      border:1px solid #3154c8;
+      border-radius:9px;
+      background:#3154c8;
+      color:white;
+      font-weight:bold;
+      cursor:pointer;
+    ">
+      Tout accepter
+    </button>
+
+    <button onclick="calculioRefuseCookies()" style="
+      padding:11px 17px;
+      border:1px solid #62615d;
+      border-radius:9px;
+      background:#fffdf9;
+      color:#20232a;
+      font-weight:bold;
+      cursor:pointer;
+    ">
+      Tout refuser
+    </button>
+
+  </div>
+
+</div>
+
+
+<script>
+
+  const calculioConsent =
+    localStorage.getItem('calculio_cookie_consent');
+
+
+  function calculioAcceptCookies() {
+
+    gtag('consent', 'update', {
+      'analytics_storage': 'granted',
+      'ad_storage': 'granted',
+      'ad_user_data': 'granted',
+      'ad_personalization': 'granted'
+    });
+
+    localStorage.setItem(
+      'calculio_cookie_consent',
+      'accepted'
+    );
+
+    document.getElementById('cookie-banner').style.display = 'none';
+  }
+
+
+  function calculioRefuseCookies() {
+
+    gtag('consent', 'update', {
+      'analytics_storage': 'denied',
+      'ad_storage': 'denied',
+      'ad_user_data': 'denied',
+      'ad_personalization': 'denied'
+    });
+
+    localStorage.setItem(
+      'calculio_cookie_consent',
+      'refused'
+    );
+
+    document.getElementById('cookie-banner').style.display = 'none';
+  }
+
+
+  function calculioManageCookies() {
+
+    document.getElementById('cookie-banner').style.display = 'block';
+
+  }
+
+
+  if (calculioConsent === 'accepted') {
+
+    gtag('consent', 'update', {
+      'analytics_storage': 'granted',
+      'ad_storage': 'granted',
+      'ad_user_data': 'granted',
+      'ad_personalization': 'granted'
+    });
+
+  } else if (calculioConsent === 'refused') {
+
+    gtag('consent', 'update', {
+      'analytics_storage': 'denied',
+      'ad_storage': 'denied',
+      'ad_user_data': 'denied',
+      'ad_personalization': 'denied'
+    });
+
+  } else {
+
+    document.getElementById('cookie-banner').style.display = 'block';
+
+  }
+
+</script>
+<!-- Fin bannière cookies Calculio -->
 
 
 </body>
